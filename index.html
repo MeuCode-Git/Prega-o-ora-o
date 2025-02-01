@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slides Sincronizados</title>
+    <style>
+        .slide {
+            display: none;
+        }
+        .slide.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide active">
+        <h2>1. Orar em Secreto</h2>
+        <p><b>Ensinamento:</b> Mateus 6:6</p>
+        <p>"Mas tu, quando orares, entra no teu quarto e, fechando a porta, ora a teu Pai, que vê em secreto; e teu Pai, que vê em secreto, te recompensará publicamente."</p>
+    </div>
+
+    <div class="slide">
+        <h2>2. Orar com Humildade</h2>
+        <p><b>Ensinamento:</b> Lucas 18:10-14</p>
+        <p>"A parábola do fariseu e do publicano mostra que Deus rejeita a oração arrogante, mas aceita a oração do pecador arrependido."</p>
+    </div>
+
+    <!-- Adicione os outros slides aqui conforme necessário -->
+
+    <button id="prev">Anterior</button>
+    <button id="next">Próximo</button>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const nextButton = document.getElementById('next');
+        const prevButton = document.getElementById('prev');
+        let currentSlideIndex = localStorage.getItem('currentSlideIndex') ? parseInt(localStorage.getItem('currentSlideIndex')) : 0;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === index) {
+                    slide.classList.add('active');
+                }
+            });
+        }
+
+        showSlide(currentSlideIndex);
+
+        nextButton.addEventListener('click', function() {
+            currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+            localStorage.setItem('currentSlideIndex', currentSlideIndex);
+            showSlide(currentSlideIndex);
+        });
+
+        prevButton.addEventListener('click', function() {
+            currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
+            localStorage.setItem('currentSlideIndex', currentSlideIndex);
+            showSlide(currentSlideIndex);
+        });
+    </script>
+</body>
+  </html>
