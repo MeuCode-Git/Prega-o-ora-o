@@ -5,43 +5,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formas de Oração na Bíblia</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 20px;
-        }
-        .slide-container {
-            max-width: 800px;
-            margin: auto;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-        .slide {
-            display: none;
-        }
-        .active {
-            display: block;
-        }
-        .buttons {
-            margin-top: 20px;
-        }
-        button {
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            margin: 5px;
-            cursor: pointer;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
+       body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    background-color: #1e1e1e; /* Fondo oscuro para mejorar el contraste */
+    margin: 0;
+    padding: 20px;
+    color: #f8f9fa; /* Texto claro para mejor visibilidad */
+}
+
+.slide-container {
+    max-width: 1200px; /* Más ancho para pantallas grandes */
+    margin: auto;
+    background: #2c3e50; /* Fondo oscuro con tono azulado */
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5); /* Sombra más pronunciada */
+}
+
+.slide {
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.active {
+    display: block;
+}
+
+.buttons {
+    margin-top: 30px;
+}
+
+button {
+    background-color: #3498db; /* Azul brillante para botones */
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 20px; /* Tamaño de fuente más grande */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #2980b9; /* Azul más oscuro al pasar el mouse */
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+h1 {
+    font-size: 3.5em; /* Tamaño grande para títulos */
+    margin-bottom: 30px;
+    color: #ecf0f1; /* Color claro para mejor visibilidad */
+}
+
+h2 {
+    font-size: 2.8em; /* Tamaño grande para subtítulos */
+    margin-bottom: 20px;
+    color: #bdc3c7; /* Color gris claro */
+}
+
+p {
+    font-size: 1.8em; /* Tamaño grande para texto */
+    line-height: 1.8;
+    color: #ecf0f1; /* Texto claro */
+}
+
+b {
+    color: #e74c3c; /* Rojo brillante para resaltar */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
     </style>
 </head>
 <body>
@@ -176,23 +221,32 @@
         </div>
     </div>
 
-    <script>
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
+   <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
 
-        function changeSlide(direction) {
-            slides[currentSlide].classList.remove('active');
-            currentSlide += direction;
+    function changeSlide(direction) {
+        slides[currentSlide].classList.remove('active');
+        currentSlide += direction;
 
-            if (currentSlide < 0) {
-                currentSlide = slides.length - 1;
-            } else if (currentSlide >= slides.length) {
-                currentSlide = 0;
-            }
-
-            slides[currentSlide].classList.add('active');
+        if (currentSlide < 0) {
+            currentSlide = slides.length - 1;
+        } else if (currentSlide >= slides.length) {
+            currentSlide = 0;
         }
-    </script>
+
+        slides[currentSlide].classList.add('active');
+    }
+
+    // Código agregado para manejar las teclas del teclado
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'ArrowLeft' || event.key === 'PageUp' || event.key === 'Backspace') {
+            changeSlide(-1); // Retrocede
+        } else if (event.key === 'ArrowRight' || event.key === 'PageDown' || event.key === 'Space') {
+            changeSlide(1); // Avanza
+        }
+    });
+</script>
 
 </body>
 </html>
